@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 
 const PropertyImages = ({ images }) => {
@@ -9,21 +8,18 @@ const PropertyImages = ({ images }) => {
         <div className='container mx-auto'>
           {images.length === 1 ? (
             <Item
-              original={images[0]}
-              thumbnail={images[0]}
+              original={`/images/properties/${images[0]}`}
+              thumbnail={`/images/properties/${images[0]}`}
               width='1000'
               height='600'
             >
               {({ ref, open }) => (
-                <Image
+                <img
                   ref={ref}
                   onClick={open}
-                  src={images[0]}
+                  src={`/images/properties/${images[0]}`}
                   alt=''
-                  className='object-cover h-[400px] mx-auto rounded-xl'
-                  width={1800}
-                  height={400}
-                  priority={true}
+                  className='object-cover h-[400px] mx-auto rounded-xl cursor-pointer'
                 />
               )}
             </Item>
@@ -41,22 +37,18 @@ const PropertyImages = ({ images }) => {
                 `}
                 >
                   <Item
-                    original={image}
-                    thumbnail={image}
+                    original={`/images/properties/${image}`}
+                    thumbnail={`/images/properties/${image}`}
                     width='1000'
                     height='600'
                   >
                     {({ ref, open }) => (
-                      <Image
+                      <img
                         ref={ref}
                         onClick={open}
-                        src={image}
+                        src={`/images/properties/${image}`}
                         alt=''
                         className='object-cover h-[400px] w-full rounded-xl cursor-pointer'
-                        width={0}
-                        height={0}
-                        sizes='100vw'
-                        priority={true}
                       />
                     )}
                   </Item>

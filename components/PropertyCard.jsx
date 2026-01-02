@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   FaBed,
@@ -22,14 +21,10 @@ const PropertyCard = ({ property }) => {
 
   return (
     <div className='rounded-xl shadow-md relative'>
-      <Image
-        src={property.images[0]}
+      <img
+        src={`/images/properties/${property.images[0]}`  || '/images/properties/no-image.jpg'}
         alt=''
-        height={0}
-        width={0}
-        sizes='100vw'
         className='w-full h-auto rounded-t-xl'
-        priority={true}
       />
       <div className='p-4'>
         <div className='text-left md:text-center lg:text-left mb-6'>
