@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 
 function ProfileProperties({properties:initialProperties}) {
     const [properties , setProperties] = useState(initialProperties);
-    const handleDelte = async(propertyId) => {
-        const confirmed = window.confirm('Are you sure want to delte this property ?')
+    const handleDelete = async(propertyId) => {
+        const confirmed = window.confirm('Are you sure you want to delete this property?')
         if(!confirmed){
             return;
         }
@@ -18,11 +18,12 @@ function ProfileProperties({properties:initialProperties}) {
             return property._id !== propertyId
         })
         setProperties(updatedProperties)
-        toast.success('Property Deleted Sucessfully')
+        toast.success('Property Deleted Successfully')
     }
+    
     return properties.map((property)=>{
         return  <div key={property._id} className="mb-10">
-                        <Link href={`properties/${property._id}`}>
+                        <Link href={`/properties/${property._id}`}>
                           <Image
                             className="h-32 w-full rounded-md object-cover"
                             src={property.images[0]}
@@ -35,7 +36,7 @@ function ProfileProperties({properties:initialProperties}) {
                           <p className="text-lg font-semibold">{property.name}</p>
                           <div className="flex flex-start gap-2 mt-2 mb-2" >
                             <FaMapMarker className="text-orange-600" />
-                            <p className="text-gray-600">  {property.location.city} {property.location.zipcode} </p>
+                            <p className="text-orange-600">  {property.location.city}  </p>
                           </div>
                           
                         </div>
@@ -49,7 +50,7 @@ function ProfileProperties({properties:initialProperties}) {
                           <button
                             className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
                             type="button"
-                            onClick={()=>handleDelte(property._id)}
+                            onClick={()=>handleDelete(property._id)}
                           >
                             Delete
                           </button>

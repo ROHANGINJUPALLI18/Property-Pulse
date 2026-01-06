@@ -1,12 +1,12 @@
 'use server';
+
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import cloudinary from '@/config/cloudinary';
 
-async function addProperty(formData) {
+async function updateProperty(propertyId, formData) {
   await connectDB();
 
   const sessionUser = await getSessionUser();
@@ -17,11 +17,12 @@ async function addProperty(formData) {
 
   const { userId } = sessionUser;
 
-  // Access all values for amenities and images
-  const amenities = formData.getAll('amenities');
-  const images = formData.getAll('images').filter((image) => image.name !== '');
+  const existingProperty = await Property.findById(propertyId);
 
-  // Create the propertyData object with embedded seller_info
+  if (existingProperty.owner.toString() !== userId) {
+    throw new Error('Current user does not own this property');
+  }
+
   const propertyData = {
     type: formData.get('type'),
     name: formData.get('name'),
@@ -35,7 +36,7 @@ async function addProperty(formData) {
     beds: formData.get('beds'),
     baths: formData.get('baths'),
     square_feet: formData.get('square_feet'),
-    amenities,
+    amenities: formData.getAll('amenities'),
     rates: {
       weekly: formData.get('rates.weekly'),
       monthly: formData.get('rates.monthly'),
@@ -47,37 +48,16 @@ async function addProperty(formData) {
       phone: formData.get('seller_info.phone'),
     },
     owner: userId,
+    images: existingProperty.images,
   };
 
-  const imageUrls = [];
-
-  for (const imageFile of images) {
-    const imageBuffer = await imageFile.arrayBuffer();
-    const imageArray = Array.from(new Uint8Array(imageBuffer));
-    const imageData = Buffer.from(imageArray);
-
-    // Convert the image data to base64
-    const imageBase64 = imageData.toString('base64');
-
-    // Make request to upload to Cloudinary
-    const result = await cloudinary.uploader.upload(
-      `data:image/png;base64,${imageBase64}`,
-      {
-        folder: 'propertypulse',
-      }
-    );
-
-    imageUrls.push(result.secure_url);
-  }
-
-  propertyData.images = imageUrls;
-
-  const newProperty = new Property(propertyData);
-  await newProperty.save();
-
+  const updatedProperty = await Property.findByIdAndUpdate(
+    propertyId,
+    propertyData,
+    { new: true }
+  );
   revalidatePath('/', 'layout');
-
-  redirect(`/properties/${newProperty._id}`);
+  redirect(`/properties/${updatedProperty._id}`);
 }
 
-export default addProperty;
+export default updateProperty;
