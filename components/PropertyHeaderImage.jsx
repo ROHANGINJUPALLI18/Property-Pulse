@@ -4,7 +4,7 @@ const PropertyHeaderImage = ({ image }) => {
       <div className='container-xl m-auto'>
         <div className='grid grid-cols-1'>
           <img
-            src={`/images/properties/${image}` || '/images/properties/no-image.jpg'}
+            src={image}
             alt=''
             className='object-cover h-[400px] w-full'
           />

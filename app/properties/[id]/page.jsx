@@ -4,11 +4,14 @@ import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import PropertyImages from '@/components/PropertyImages';
+import { convertToSerializabeObjects } from '@/utils/convertToObject';
 
 const PropertyPage = async ({ params }) => {
   const {id} = await params;
   await connectDB();
-  const property = await Property.findById(id).lean();
+  const propertyDoc = await Property.findById(id).lean();
+  const property = convertToSerializabeObjects(propertyDoc)
 
   if (!property) {
     return (
@@ -38,6 +41,7 @@ const PropertyPage = async ({ params }) => {
           </div>
         </div>
       </section>   
+      <PropertyImages images={property.images} />
     </>
   );
 };
