@@ -1,20 +1,12 @@
 'use client';
-import ClipLoader from 'react-spinners/ClipLoader';
-
-const override = {
-  display: 'block',
-  margin: '100px auto',
-};
 
 const Spinner = ({ loading }) => {
+  if (!loading) return null;
+
   return (
-    <ClipLoader
-      color='#3b82f6'
-      loading={loading}
-      cssOverride={override}
-      size={150}
-      aria-label='Loading Spinner'
-    />
+    <div className='flex items-center justify-center py-24'>
+      <div className='animate-spin rounded-full h-32 w-32 border-b-4 border-blue-500'></div>
+    </div>
   );
 };
 export default Spinner;
