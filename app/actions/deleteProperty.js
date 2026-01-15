@@ -4,7 +4,6 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
-import { toast } from "react-toastify";
 
 async function deleteProperty(propertyId) {
 
@@ -22,7 +21,6 @@ async function deleteProperty(propertyId) {
     if(!property){
         throw new Error("property Not Found")
     }
-     // firstly check the owner ship then only delete the property in the database and clodinary(remove the related links from the cloudinary) 
     if(property.owner.toString() !== userId){
         throw new Error("Un-authorized");
     }

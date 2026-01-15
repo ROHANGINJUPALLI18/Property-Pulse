@@ -4,11 +4,9 @@ import Property from "@/models/Property"
 import { getSessionUser } from "@/utils/getSessionUser"
 import profileDefault from '@/assets/images/profile.png'
 import ProfileProperties from "@/components/ProfileProperties"
-import { convertToSerializabeObjects } from "@/utils/convertToObject"
-import Link from "next/link"
+import { convertToSerializeableObject } from "@/utils/convertToObject"
 
 async function profilePage() {
-
     await connectDB();
 
     const sessionUser =  await getSessionUser();
@@ -21,7 +19,7 @@ async function profilePage() {
 
     const propertiesDocs = await Property.find({owner:userId}).lean()
 
-    const properties = propertiesDocs.map(convertToSerializabeObjects)
+    const properties = propertiesDocs.map(convertToSerializeableObject)
     console.log(properties);
     
 

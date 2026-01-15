@@ -47,7 +47,7 @@ export default function PropertyMap({ property }) {
   }, [property.location])
 
   useEffect(() => {
-    if (map.current) return; // stops map from intializing more than once
+    if (map.current) return; 
     if (!loading && lat !== null && lng !== null) {
       maptilersdk.config.apiKey = process.env.NEXT_PUBLIC_MAPTILER_API_KEY;
       map.current = new maptilersdk.Map({

@@ -1,14 +1,14 @@
 import PropertyEditForm from "@/components/PropertyEditForm"
 import connectDB from "@/config/database"
 import Property from "@/models/Property"
-import { convertToSerializabeObjects } from "@/utils/convertToObject"
+import { convertToSerializeableObject } from "@/utils/convertToObject"
 
 async function PropertyEditPage({params}) {
     const {id} = await params;
     
     await connectDB();
     const propertyDoc = await Property.findById(id).lean()
-    const property = convertToSerializabeObjects(propertyDoc);
+    const property = convertToSerializeableObject(propertyDoc);
 
     if(!property){
         return <h1 className="text-center text-2xl font-bold mt-10">

@@ -1,4 +1,4 @@
-export function convertToSerializabeObjects(doc) {
+export function convertToSerializeableObject(doc) {
   if (!doc || typeof doc !== 'object') return doc;
 
   for (const key of Object.keys(doc)) {
