@@ -16,6 +16,11 @@ export const authOptions = {
       },
     }),
   ],
+  // Ensure auth errors redirect to home instead of /api/auth/error
+  pages: {
+    signIn: '/',
+    error: '/',
+  },
   callbacks: {
     // Invoked on successful sign in
     async signIn({ profile }) {
