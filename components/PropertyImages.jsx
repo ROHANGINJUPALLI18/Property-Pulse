@@ -7,7 +7,7 @@ const PropertyImages = ({ images }) => {
         {images.length === 1 ? (
           <Image
             src={images[0]}
-            alt=''
+            alt='Property Image'
             className='object-cover h-[400px] mx-auto rounded-xl'
             width={1800}
             height={400}
@@ -26,7 +26,7 @@ const PropertyImages = ({ images }) => {
               >
                 <Image
                   src={image}
-                  alt=''
+                  alt={`Property Image ${index + 1}`}
                   className='object-cover h-[400px] w-full rounded-xl'
                   width={1800}
                   height={400}
