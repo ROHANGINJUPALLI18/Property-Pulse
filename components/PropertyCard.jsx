@@ -1,5 +1,6 @@
 import Property from '@/models/Property';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FaBed,
   FaBath,
@@ -22,11 +23,11 @@ const PropertyCard = ({ property }) => {
 
   return (
     <div className='rounded-xl shadow-md relative'>
-      <img
+      <Image
         src={property.images[0]}
-        alt=''
-        width={0}
-        height={0}
+        alt={property.name}
+        width={500}
+        height={300}
         sizes='100vw'
         className='w-full h-auto rounded-t-xl'
       />
