@@ -10,7 +10,7 @@ export const metadata = {
   description: 'Find The Perfect Rental Property',
   keywords: 'rental, property, real estate',
   verification: {
-    google: 'PASTE_YOUR_VERIFICATION_CODE_HERE',
+    google: 'QEWIJr_pz9zieRH2icS2XzOI5aQlIdXUL83H7tqLNI4',
   },
 };
 
