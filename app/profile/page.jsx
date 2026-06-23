@@ -6,6 +6,11 @@ import profileDefault from '@/assets/images/profile.png'
 import ProfileProperties from "@/components/ProfileProperties"
 import { convertToSerializeableObject } from "@/utils/convertToObject"
 
+export const metadata = {
+  title: 'Your Profile - PropertyPulse',
+  description: 'Manage your PropertyPulse profile and property listings.',
+};
+
 async function profilePage() {
     await connectDB();
 

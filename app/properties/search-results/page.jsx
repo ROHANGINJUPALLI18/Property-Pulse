@@ -6,6 +6,26 @@ import PropertyCard from "@/components/PropertyCard";
 import PropertySearchForm from "@/components/PropertySearchForm";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
+export async function generateMetadata({ searchParams }) {
+  const { location, propertyType } = await searchParams;
+  const hasLocation = location && location.trim() !== '';
+  const hasType = propertyType && propertyType !== 'All';
+  
+  let keyword = 'Search Results';
+  if (hasLocation && hasType) {
+    keyword = `${propertyType}s in ${location}`;
+  } else if (hasLocation) {
+    keyword = `Properties in ${location}`;
+  } else if (hasType) {
+    keyword = `${propertyType}s`;
+  }
+
+  return {
+    title: `${keyword} - PropertyPulse`,
+    description: `Search results for ${keyword} on PropertyPulse. Find your dream rental property.`,
+  };
+}
+
 const SearchResultPage = async ({searchParams}) => {
     const {location, propertyType} = await searchParams;
     await connectDB();

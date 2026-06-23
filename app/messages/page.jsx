@@ -5,6 +5,11 @@ import '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 import { getSessionUser } from '@/utils/getSessionUser';
 
+export const metadata = {
+  title: 'Your Messages - PropertyPulse',
+  description: 'View your messages and property inquiries on PropertyPulse.',
+};
+
 const MessagePage = async () => {
   await connectDB();
 

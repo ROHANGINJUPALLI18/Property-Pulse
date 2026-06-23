@@ -1,5 +1,10 @@
 import PropertyAddForm from '@/components/PropertyAddForm'
 
+export const metadata = {
+  title: 'Add Property - PropertyPulse',
+  description: 'Add a new property listing to PropertyPulse.',
+};
+
 const AddProperty = () => {
     return ( 
         <section className="bg-blue-500  ">

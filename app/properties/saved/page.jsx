@@ -4,6 +4,11 @@ import connectDB from "@/config/database"
 import User from "@/models/User"
 import Property from "@/models/Property"
 
+export const metadata = {
+  title: 'Saved Properties - PropertyPulse',
+  description: 'View your saved property listings on PropertyPulse.',
+};
+
 async function SavedPropertiesPage() {
 
     await connectDB();
