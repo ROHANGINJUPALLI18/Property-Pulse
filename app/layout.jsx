@@ -9,6 +9,9 @@ export const metadata = {
   title: 'PropertyPulse',
   description: 'Find The Perfect Rental Property',
   keywords: 'rental, property, real estate',
+  verification: {
+    google: 'PASTE_YOUR_VERIFICATION_CODE_HERE',
+  },
 };
 
 const MainLayout = ({ children }) => {
