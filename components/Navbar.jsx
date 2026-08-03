@@ -266,7 +266,10 @@ const Navbar = () => {
               </Link>
             )}
             {!session && (
-              <button className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4'>
+              <button
+                onClick={() => signIn(providers ? Object.values(providers)[0]?.id : 'google')}
+                className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4'
+              >
                 <i className='fa-brands fa-google mr-2'></i>
                 <span>Login or Register</span>
               </button>
